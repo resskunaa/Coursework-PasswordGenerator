@@ -12,25 +12,25 @@ void generatePassword(int length, int useLower, int useUpper, int useDigits, int
     const char special[] = "!@#$%^&*()";
     char possibleChars[100] = "";
 
-    // Build the character pool
+    // Building the character pool
     if (useLower) strcat(possibleChars, lower);
     if (useUpper) strcat(possibleChars, upper);
     if (useDigits) strcat(possibleChars, digits);
     if (useSpecial) strcat(possibleChars, special);
 
-    // Check if no character sets were selected
+    // Checking if no character sets were selected
     if (strlen(possibleChars) == 0) {
         printf("Error: No character sets selected. Cannot generate password.\n");
-        password[0] = '\0';  // Return an empty string
+        password[0] = '\0';  
         return;
     }
 
-    // Generate the password
-    srand(time(0));  // Seed random number generator
+    // Generating the password
+    srand(time(0)); 
     for (int i = 0; i < length; i++) {
         password[i] = possibleChars[rand() % strlen(possibleChars)];
     }
-    password[length] = '\0';  // Null-terminate the password
+    password[length] = '\0';  
 }
 
 // Function to analyze password strength
@@ -51,7 +51,7 @@ void analyzePasswordStrength(const char *password) {
     if (hasUpper) score += 10;
     if (hasDigit) score += 10;
     if (hasSpecial) score += 10;
-    if (length >= 12) score += 20;  // Bonus for longer passwords
+    if (length >= 12) score += 20;  
     else if (length >= 8) score += 10;
 
     // Provide feedback
